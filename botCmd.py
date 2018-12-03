@@ -43,6 +43,7 @@ def _msgLog(user, msg):
     conn = sqlite3.connect(APP_DB)
     cursor = conn.cursor()
     values = (user, msg,)
+    # CREATE TABLE MsgLog (user TEXT, msg TEXT);
     cursor.execute("INSERT INTO MsgLog VALUES (?,?)", values)
     conn.commit()
     conn.close()
@@ -52,6 +53,7 @@ def _showAnimal(animal):
     try:
         conn = sqlite3.connect(APP_DB)
         cursor = conn.cursor()
+        # CREATE TABLE Animals (animal TEXT UNIQUE, description TEXT);
         cursor.execute("SELECT description FROM Animals WHERE animal='%s'" % (animal))
         all_data = cursor.fetchone()
         conn.close()
@@ -67,6 +69,7 @@ def _showAnimal(animal):
 def _listAnimal():
     conn = sqlite3.connect(APP_DB)
     cursor = conn.cursor()
+    # CREATE TABLE Animals (animal TEXT UNIQUE, description TEXT);
     cursor.execute("SELECT animal FROM Animals")
     all_data = cursor.fetchall()
     conn.close()
@@ -77,6 +80,7 @@ def _getServerInfo(user):
     if user.lower() == "dragonite":
         conn = sqlite3.connect(APP_DB)
         cursor = conn.cursor()
+        # CREATE TABLE ServerInfo (info TEXT);
         cursor.execute("SELECT info FROM ServerInfo")
         all_data = cursor.fetchone()
         conn.close()
@@ -91,6 +95,7 @@ def _addAdmin(user, arg):
             conn = sqlite3.connect(APP_DB)
             cursor = conn.cursor()
             values = (arg,)
+            # CREATE TABLE Admins (user TEXT PRIMARY KEY);
             cursor.execute("INSERT INTO Admins VALUES (?)", values)
             conn.commit()
             conn.close()
@@ -104,6 +109,7 @@ def _addAdmin(user, arg):
 def _getFlag(user):
     conn = sqlite3.connect(APP_DB)
     cursor = conn.cursor()
+    # CREATE TABLE Admins (user TEXT PRIMARY KEY);
     cursor.execute("SELECT user FROM Admins WHERE user='%s'" % (user))
     all_data = cursor.fetchone()
     conn.close()
