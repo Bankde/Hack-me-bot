@@ -36,6 +36,9 @@ def init():
     values = (serverInfo,)
     cursor.execute("UPDATE ServerInfo SET info=?", values)
     conn.commit()
+    values = ("TestLogUser", "TestLogMsg", )
+    cursor.execute("INSERT INTO MsgLog VALUES (?,?)", values)
+    conn.commit()
     conn.close()
 
 # Log userId and their msg here
